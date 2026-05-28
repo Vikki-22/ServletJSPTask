@@ -1,6 +1,4 @@
 package ModelDao;
-
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +9,7 @@ import Entity.student;
 
 public class Insertdata {
 
-   // insert data using this method
+   // insert the student data
 	
 	public int insert(student s) {
 		
@@ -33,7 +31,7 @@ public class Insertdata {
 		
 	}
 	
-	// read all data from the database
+	// read all student from the database
 	
 	public LinkedList<student> getAllStudents() {
 
@@ -61,4 +59,44 @@ public class Insertdata {
 
 	    return ls;
 	}
+	
+	
+	// update Student
+
+	public int updateStudent(student s) {
+		int i = 0;
+		Connection con = Dbutil.makeConnection();
+		try {
+			PreparedStatement pst =con.prepareStatement(
+			"update student set name=?, age=?, course=? where id=?");
+			pst.setString(1, s.getName());
+			pst.setInt(2, s.getAge());
+			pst.setString(3, s.getCourse());
+			pst.setInt(4, s.getId());
+			i = pst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+	
+
+
+	// delete data
+
+	public int deleteStudent(int id) {
+		int i = 0;
+		Connection con = Dbutil.makeConnection();
+		try {
+			PreparedStatement pst =con.prepareStatement("delete from student where id=?");
+			pst.setInt(1, id);
+			i = pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	
 }

@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3">
 
   <div class="container">
 
-    <a class="navbar-brand fw-bold" href="#">
+    <a class="navbar-brand fw-bolder fs-2" href="#">
       Student Form
     </a>
 
@@ -20,23 +20,31 @@
 
       <ul class="navbar-nav m-auto mb-2 mb-lg-0">
 
-        <li class="nav-item">
-          <a class="nav-link active"
-            href="simpleServlet">
+        <li class="nav-item mx-2">
 
-            Home
-
+          <a class="nav-link active fw-bolder fs-5" href="index.jsp">
+             Home
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link active"
-            href="SecondServlet">
-
-            Read
-
+        <li class="nav-item mx-2">
+          <a class="nav-link active fw-bolder fs-5" href="add.jsp">
+             Add Student
           </a>
         </li>
+
+        <li class="nav-item mx-2">
+          <a class="nav-link active fw-bolder fs-5"href="SecondServlet">
+             Read Student
+          </a>
+        </li>
+        
+           <li class="nav-item mx-2">
+          <a class="nav-link active fw-bolder fs-5"href="SecondServlet">
+            Delete Student
+          </a>
+        </li>
+        
 
       </ul>
 
@@ -46,7 +54,7 @@
           type="search"
           placeholder="Search"/>
 
-        <button class="btn btn-light"
+        <button class="btn btn-light fw-bolder"
           type="submit">
 
           Search
