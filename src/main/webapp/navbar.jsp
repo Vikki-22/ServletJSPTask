@@ -58,12 +58,11 @@
 			</ul>
 
 			<!-- Search Form -->
-			<form class="d-flex mt-3 mt-lg-0">
-				<input class="form-control rounded-pill me-2 border-0 shadow-sm"
-					type="search" placeholder="Search Student..." />
-				<button class="btn btn-warning rounded-pill fw-bold px-4"
-					type="submit"> Search
-				</button>
+			<form class="d-flex mt-3 mt-lg-0" action="SearchServlet" method="get">
+				    <input class="form-control rounded-pill me-2 border-0 shadow-sm"
+					type="search" name="search" placeholder="Search Student..." />
+				    <button class="btn btn-warning rounded-pill fw-bold px-4"
+					type="submit">Search</button>
 			</form>
 		</div>
 	</div>

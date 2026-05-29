@@ -18,9 +18,9 @@
 				<!-- Social Icons -->
 				<div class="d-flex gap-3 mt-4">
 					<a href="#" class="social-icon"> <i class="bi bi-facebook"></i>
-					</a> <a href="#" class="social-icon"> <i class="bi bi-instagram"></i>
-					</a> <a href="#" class="social-icon"> <i class="bi bi-github"></i>
-					</a> <a href="#" class="social-icon"> <i class="bi bi-linkedin"></i>
+					</a> <a href="https://www.instagram.com/ll_._vikki_._ll/" class="social-icon"> <i class="bi bi-instagram"></i>
+					</a> <a href="https://github.com/Vikki-22?utm_source=chatgpt.com" class="social-icon"> <i class="bi bi-github"></i>
+					</a> <a href="https://www.linkedin.com/in/vikki-chandrawanshi-73b8752bb?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="social-icon"> <i class="bi bi-linkedin"></i>
 					</a>
 				</div>
 			</div>
@@ -44,6 +44,17 @@
 						class="text-decoration-none text-light"> <i
 							class="bi bi-book-fill"></i> Read Student
 					</a></li>
+					<li class="mb-3"><a
+					class="text-decoration-none text-light"
+					href="secupdate.jsp"> <i class="bi bi-pencil-square"></i>
+						Update Student
+				     </a></li>
+				     
+					<li class="mb-3"><a
+                         class="text-decoration-none text-light"					
+                         href="delete.jsp"> <i class="bi bi-trash-fill"></i> 
+                         Delete Student
+				</a></li>
 				</ul>
 
 			</div>

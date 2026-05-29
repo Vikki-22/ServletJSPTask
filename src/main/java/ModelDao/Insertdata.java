@@ -105,4 +105,23 @@ public class Insertdata {
 		}
 		return i;
 	}
+	
+	
+	//Search Box 
+	public LinkedList<student> searchByName(String name) {
+	    LinkedList<student> list = new LinkedList<>();
+	    try {
+	        Connection con = Dbutil.makeConnection();
+	        String q = "SELECT * FROM student WHERE name LIKE ?";
+	        PreparedStatement ps = con.prepareStatement(q);
+	        ps.setString(1, name + "%"); 
+	        ResultSet rs = ps.executeQuery();
+	        while (rs.next()) {student s = new student( rs.getInt("id"),rs.getString("name"),rs.getInt("age"), rs.getString("course") );
+	            list.add(s);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return list;
+	}
 }
