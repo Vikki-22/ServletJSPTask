@@ -12,7 +12,6 @@ public class Insertdata {
    // insert the student data
 	
 	public int insert(student s) {
-		
 		int i=0;
 		Connection con = Dbutil.makeConnection();
 		try {
@@ -21,22 +20,18 @@ public class Insertdata {
 			pst.setInt(2, s.getAge());
 			pst.setString(3, s.getCourse());
 			i=pst.executeUpdate();
-		
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return i;
-		
+		return i;	
 	}
 	
 	// read all student from the database
 	
 	public LinkedList<student> getAllStudents() {
-
-	    LinkedList<student> ls =
-	    new LinkedList<>();
+	    LinkedList<student> ls =new LinkedList<>();
 	    
 	    try {
 	    	Connection con =ModelDao.Dbutil.makeConnection();
@@ -44,12 +39,7 @@ public class Insertdata {
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				ls.add(new student(
-						rs.getInt("id"),
-						rs.getString("name"),
-						rs.getInt("age"),
-						rs.getString("course")));
-				
-				
+						rs.getInt("id"),rs.getString("name"),rs.getInt("age"),rs.getString("course")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -59,32 +49,8 @@ public class Insertdata {
 
 	    return ls;
 	}
-	
-	
-	// update Student
-
-	public int updateStudent(student s) {
-		int i = 0;
-		Connection con = Dbutil.makeConnection();
-		try {
-			PreparedStatement pst =con.prepareStatement(
-			"update student set name=?, age=?, course=? where id=?");
-			pst.setString(1, s.getName());
-			pst.setInt(2, s.getAge());
-			pst.setString(3, s.getCourse());
-			pst.setInt(4, s.getId());
-			i = pst.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return i;
-	}
-	
-
 
 	// delete data
-
 	public int deleteStudent(int id) {
 		int i = 0;
 		Connection con = Dbutil.makeConnection();
@@ -98,5 +64,45 @@ public class Insertdata {
 		return i;
 	}
 
+	// GET STUDENT BY ID
+	public student getStudentById(int id) {
+		student s = null;
+		try {
+		Connection	con = Dbutil.makeConnection();
+			String q ="select * from student where id=?";
+			PreparedStatement ps =	con.prepareStatement(q);
+			ps.setInt(1, id);
+			ResultSet rs =ps.executeQuery();
+			if (rs.next()) {
+				String name =rs.getString("name");
+				int age =rs.getInt("age");
+				String course =rs.getString("course");
+				s = new student(id,name,age,course
+				);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return s;
+	}
 	
+	// UPDATE STUDENT
+	public int updateStudent(student s) {
+		int i = 0;
+		try {
+		Connection	con = Dbutil.makeConnection();
+			String q ="update student set name=?, age=?, course=? where id=?";
+			PreparedStatement ps =con.prepareStatement(q);
+			ps.setString(1, s.getName());
+			ps.setInt(2, s.getAge());
+			ps.setString(3, s.getCourse());
+			ps.setInt(4, s.getId());
+			i = ps.executeUpdate();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
 }

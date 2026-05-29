@@ -21,4 +21,7 @@ public class student {
 		this.age = age;
 		this.course = course;
 	}
+
+	
+	
 }
