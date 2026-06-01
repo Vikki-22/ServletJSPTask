@@ -20,7 +20,6 @@ public class UpdateServlet extends HttpServlet {
 		request.getRequestDispatcher("update.jsp").forward(request, response);
 
 	}
-
 	protected void doPost(HttpServletRequest request,HttpServletResponse response)
 			throws ServletException, IOException {
 		int id =Integer.parseInt(request.getParameter("id"));

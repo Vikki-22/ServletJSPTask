@@ -4,13 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.List;
 
 import Entity.student;
 
 public class Insertdata {
 
    // insert the student data
-	
 	public int insert(student s) {
 		int i=0;
 		Connection con = Dbutil.makeConnection();
@@ -29,13 +29,12 @@ public class Insertdata {
 	}
 	
 	// read all student from the database
-	
 	public LinkedList<student> getAllStudents() {
 	    LinkedList<student> ls =new LinkedList<>();
 	    
 	    try {
 	    	Connection con =ModelDao.Dbutil.makeConnection();
-			PreparedStatement ps=con.prepareStatement("select * from student");
+			PreparedStatement ps=con.prepareStatement("select * from student limit 10 ");
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				ls.add(new student(
@@ -104,8 +103,7 @@ public class Insertdata {
 			e.printStackTrace();
 		}
 		return i;
-	}
-	
+	}	
 	
 	//Search Box 
 	public LinkedList<student> searchByName(String name) {
@@ -123,5 +121,24 @@ public class Insertdata {
 	        e.printStackTrace();
 	    }
 	    return list;
+	}
+
+	// page increase and decrease
+	public List<student> getStudentsByPage(int start) {
+		 LinkedList<student> ls =new LinkedList<>();
+		    try {
+		    	Connection con =ModelDao.Dbutil.makeConnection();
+				PreparedStatement ps=con.prepareStatement("select * from student limit 10 offset ? ");
+				ps.setInt(1, start);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) 
+				{
+					ls.add(new student(rs.getInt("id"),rs.getString("name"),rs.getInt("age"),rs.getString("course")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		    return ls;
 	}
 }

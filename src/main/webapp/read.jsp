@@ -19,7 +19,6 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 
-<!-- Bootstrap Icons -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -100,8 +99,9 @@
 								<td><%=s.getCourse()%></td>
 
 								<td><a href="UpdateServlet?id=<%=s.getId()%>"
-									class="btn btn-primary"> 
-									<i class="bi bi-pencil-square"></i> Update </a></td>
+									class="btn btn-primary"> <i class="bi bi-pencil-square"></i>
+										Update
+								</a></td>
 
 								<td><a href="DeleteServlet?id=<%=s.getId()%>"
 									class="btn btn-danger btn-sm rounded-pill px-3"> <i
@@ -136,6 +136,40 @@
 				</div>
 
 			</div>
+
+		</div>
+
+		<!-- Pagination Buttons -->
+		<div class="d-flex justify-content-center gap-3 mt-4">
+
+			<%
+			Integer pageNo = (Integer) request.getAttribute("page");
+
+			if (pageNo == null) {
+				pageNo = 1;
+			}
+			%>
+
+			<%
+			if (pageNo > 1) {
+			%>
+
+			<a href="ViewStudentServlet?page=<%=pageNo - 1%>"
+				class="btn btn-primary rounded-pill px-4"> <i
+				class="bi bi-arrow-left-circle"></i> Previous
+
+			</a>
+
+			<%
+			}
+			%>
+			<span class="btn btn-secondary rounded-pill px-4 disabled">
+				Page <%=pageNo%>
+			</span> <a href="ViewStudentServlet?page=<%=pageNo + 1%>"
+				class="btn btn-success rounded-pill px-4"> Next <i
+				class="bi bi-arrow-right-circle"></i>
+
+			</a>
 
 		</div>
 

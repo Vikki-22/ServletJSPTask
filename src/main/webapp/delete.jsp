@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,11 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<!-- Bootstrap Icons -->
+<!-- Bootstrap Icons -->-white py-3 rounded-top-4">
+						<h4 class="mb-0 text-center">
+							<i class="bi bi-exclamation-triangle-fill text-warning"></i>
+							Warning Delete Section
+						</h4>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -30,11 +33,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-5">
 				<div class="card border-0 shadow-lg rounded-4">
-					<div class="card-header bg-dark text-white py-3 rounded-top-4">
-						<h4 class="mb-0 text-center">
-							<i class="bi bi-exclamation-triangle-fill text-warning"></i>
-							Warning Delete Section
-						</h4>
+					<div class="card-header bg-dark text
 					</div>
 					<div class="card-body p-4">
 						<form action="DeleteServlet" method="get">
@@ -78,4 +77,4 @@ body {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%></html>

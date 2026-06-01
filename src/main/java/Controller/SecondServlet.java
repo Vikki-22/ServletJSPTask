@@ -16,29 +16,19 @@ import ModelDao.Insertdata;
 @WebServlet("/SecondServlet")
 public class SecondServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+	Insertdata dao = new Insertdata();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    Insertdata dao = new Insertdata();
+		LinkedList<student> ls = dao.getAllStudents();
+		request.setAttribute("List", ls);
+		RequestDispatcher rd = request.getRequestDispatcher("read.jsp");
+		rd.forward(request, response);
+	}
 
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response)
-            throws ServletException, IOException {
-
-        LinkedList<student> ls =
-        dao.getAllStudents();
-
-        request.setAttribute("List", ls);
-
-        RequestDispatcher rd =
-        request.getRequestDispatcher("read.jsp");
-
-        rd.forward(request, response);
-    }
-
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response)
-            throws ServletException, IOException {
-
-        doGet(request, response);
-    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
 }
