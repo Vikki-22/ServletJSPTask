@@ -1,4 +1,5 @@
 package ModelDao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,43 +11,41 @@ import Entity.student;
 
 public class Insertdata {
 
-   // insert the student data
+	// insert the student data
 	public int insert(student s) {
-		int i=0;
+		int i = 0;
 		Connection con = Dbutil.makeConnection();
 		try {
-			PreparedStatement pst=con.prepareStatement("insert into student(name,age,course) values (?,?,?)");
+			PreparedStatement pst = con.prepareStatement("insert into student(name,age,course) values (?,?,?)");
 			pst.setString(1, s.getName());
 			pst.setInt(2, s.getAge());
 			pst.setString(3, s.getCourse());
-			i=pst.executeUpdate();
-			
+			i = pst.executeUpdate();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return i;	
+		return i;
 	}
-	
+
 	// read all student from the database
 	public LinkedList<student> getAllStudents() {
-	    LinkedList<student> ls =new LinkedList<>();
-	    
-	    try {
-	    	Connection con =ModelDao.Dbutil.makeConnection();
-			PreparedStatement ps=con.prepareStatement("select * from student limit 10 ");
-			ResultSet rs=ps.executeQuery();
-			while(rs.next()) {
-				ls.add(new student(
-						rs.getInt("id"),rs.getString("name"),rs.getInt("age"),rs.getString("course")));
+		LinkedList<student> ls = new LinkedList<>();
+
+		try {
+			Connection con = ModelDao.Dbutil.makeConnection();
+			PreparedStatement ps = con.prepareStatement("select * from student limit 10 ");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				ls.add(new student(rs.getInt("id"), rs.getString("name"), rs.getInt("age"), rs.getString("course")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    
 
-	    return ls;
+		return ls;
 	}
 
 	// delete data
@@ -54,7 +53,7 @@ public class Insertdata {
 		int i = 0;
 		Connection con = Dbutil.makeConnection();
 		try {
-			PreparedStatement pst =con.prepareStatement("delete from student where id=?");
+			PreparedStatement pst = con.prepareStatement("delete from student where id=?");
 			pst.setInt(1, id);
 			i = pst.executeUpdate();
 		} catch (SQLException e) {
@@ -67,78 +66,93 @@ public class Insertdata {
 	public student getStudentById(int id) {
 		student s = null;
 		try {
-		Connection	con = Dbutil.makeConnection();
-			String q ="select * from student where id=?";
-			PreparedStatement ps =	con.prepareStatement(q);
+			Connection con = Dbutil.makeConnection();
+			String q = "select * from student where id=?";
+			PreparedStatement ps = con.prepareStatement(q);
 			ps.setInt(1, id);
-			ResultSet rs =ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				String name =rs.getString("name");
-				int age =rs.getInt("age");
-				String course =rs.getString("course");
-				s = new student(id,name,age,course
-				);
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				String course = rs.getString("course");
+				s = new student(id, name, age, course);
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return s;
 	}
-	
+
 	// UPDATE STUDENT
 	public int updateStudent(student s) {
 		int i = 0;
 		try {
-		Connection	con = Dbutil.makeConnection();
-			String q ="update student set name=?, age=?, course=? where id=?";
-			PreparedStatement ps =con.prepareStatement(q);
+			Connection con = Dbutil.makeConnection();
+			String q = "update student set name=?, age=?, course=? where id=?";
+			PreparedStatement ps = con.prepareStatement(q);
 			ps.setString(1, s.getName());
 			ps.setInt(2, s.getAge());
 			ps.setString(3, s.getCourse());
 			ps.setInt(4, s.getId());
 			i = ps.executeUpdate();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return i;
-	}	
-	
-	//Search Box 
+	}
+
+	// Search Box
 	public LinkedList<student> searchByName(String name) {
-	    LinkedList<student> list = new LinkedList<>();
-	    try {
-	        Connection con = Dbutil.makeConnection();
-	        String q = "SELECT * FROM student WHERE name LIKE ?";
-	        PreparedStatement ps = con.prepareStatement(q);
-	        ps.setString(1, name + "%"); 
-	        ResultSet rs = ps.executeQuery();
-	        while (rs.next()) {student s = new student( rs.getInt("id"),rs.getString("name"),rs.getInt("age"), rs.getString("course") );
-	            list.add(s);
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	    return list;
+		LinkedList<student> list = new LinkedList<>();
+		try {
+			Connection con = Dbutil.makeConnection();
+			String q = "SELECT * FROM student WHERE name LIKE ?";
+			PreparedStatement ps = con.prepareStatement(q);
+			ps.setString(1, name + "%");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				student s = new student(rs.getInt("id"), rs.getString("name"), rs.getInt("age"),
+						rs.getString("course"));
+				list.add(s);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	// page increase and decrease
 	public List<student> getStudentsByPage(int start) {
-		 LinkedList<student> ls =new LinkedList<>();
-		    try {
-		    	Connection con =ModelDao.Dbutil.makeConnection();
-				PreparedStatement ps=con.prepareStatement("select * from student limit 10 offset ? ");
-				ps.setInt(1, start);
-				ResultSet rs=ps.executeQuery();
-				while(rs.next()) 
-				{
-					ls.add(new student(rs.getInt("id"),rs.getString("name"),rs.getInt("age"),rs.getString("course")));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+		LinkedList<student> ls = new LinkedList<>();
+		try {
+			Connection con = ModelDao.Dbutil.makeConnection();
+			PreparedStatement ps = con.prepareStatement("select * from student limit 10 offset ? ");
+			ps.setInt(1, start);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				ls.add(new student(rs.getInt("id"), rs.getString("name"), rs.getInt("age"), rs.getString("course")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return ls;
+	}
+
+	public int getTotalStudents() {
+		int count = 0;
+		try {
+			Connection con = Dbutil.makeConnection();
+			String sql = "SELECT COUNT(*) FROM student";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
 			}
 
-		    return ls;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 }

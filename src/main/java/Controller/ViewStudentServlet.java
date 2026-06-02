@@ -18,7 +18,8 @@ public class ViewStudentServlet extends HttpServlet {
         int page = 1;
         int recordsPerPage = 10;
         String pageParam = request.getParameter("page");
-        if (pageParam != null) {
+        if (pageParam != null)
+        {
             page = Integer.parseInt(pageParam);
         }
         int start = (page - 1) * recordsPerPage;
@@ -28,6 +29,5 @@ public class ViewStudentServlet extends HttpServlet {
         request.setAttribute("List", ls);
 		RequestDispatcher rd = request.getRequestDispatcher("read.jsp");
 		rd.forward(request, response);
-
     }
 }

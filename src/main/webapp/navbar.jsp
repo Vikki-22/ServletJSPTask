@@ -11,7 +11,7 @@
 	<div class="container">
 
 		<!-- Logo -->
-		<a class="navbar-brand fw-bold fs-2 text-warning" href="index.jsp">
+		<a class="navbar-brand fw-bold fs-2 text-warning" href="DashboardServlet">
 			<i class="bi bi-mortarboard-fill"></i> Student
 		</a>
 
