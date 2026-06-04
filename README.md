@@ -49,20 +49,6 @@ The Student Management System is designed to simplify the management of student 
 
 ---
 
-## 📂 Project Structure
-Simple/
- │
-├── src/
-│ ├── Controller/
-│ ├── Dao/
-│ ├── Entity/
-├── WebContent/
-│
-└── README.md
-
-
----
-
 ⚙️ Functionalities
  1. Add Student
 Users can add new student details including:
@@ -70,10 +56,13 @@ Users can add new student details including:
 - Age
 - Course
  2. View Students
+  
 Displays all student records stored in the database.
  3. Update Student
+ 
 Modify existing student information.
  4. Delete Student
+ 
 Remove unwanted student records from the system.
 ---
 🗄️ Database Configuration
@@ -83,8 +72,12 @@ CREATE DATABASE student_management;
 CREATE TABLE students (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
-    email VARCHAR(100),
-    phone VARCHAR(15),
+    age INT ,
     course VARCHAR(50),
-    address VARCHAR(255)
+);
+
+CREATE TABLE user (
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE ,
+    password VARCHAR(100) NOT NULL,
 );
