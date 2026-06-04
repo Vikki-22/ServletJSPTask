@@ -56,13 +56,10 @@ Users can add new student details including:
 - Age
 - Course
  2. View Students
-  
 Displays all student records stored in the database.
  3. Update Student
- 
 Modify existing student information.
  4. Delete Student
- 
 Remove unwanted student records from the system.
 ---
 🗄️ Database Configuration
