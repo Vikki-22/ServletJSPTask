@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import Entity.User;
 import ModelDao.userDao;
 
@@ -24,9 +26,10 @@ public class UserLoginServlet extends HttpServlet {
 	String name= request.getParameter("name");
 	String email= request.getParameter("email");
 	String password= request.getParameter("password");
+	String hpw= BCrypt.hashpw(password, BCrypt.gensalt());
 	userDao dao= new userDao();
-	User u=new User(name, email, password) ;
-	int i=dao.usercreate( u);
+	User u=new User(name, email, hpw) ;
+	int i=dao.usercreate(u);
 	if (i != 0) {
 		response.sendRedirect("login.jsp");
 	}

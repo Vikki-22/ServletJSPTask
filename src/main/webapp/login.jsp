@@ -111,24 +111,17 @@ body{
 }
 
 </style>
-
 </head>
-
 <body>
-
 <div class="login-card">
-
 <div class="logo">
     <i class="fa-solid fa-graduation-cap"></i>
 </div>
-
 <div class="heading">
     <h2>Student Login</h2>
     <p>Welcome Back</p>
 </div>
-
 <form action="loginServlet" method="post">
-
     <div class="input-group">
         <i class="fa-solid fa-envelope"></i>
         <input type="email"
@@ -137,7 +130,6 @@ body{
                placeholder="Enter Email"
                required>
     </div>
-
     <div class="input-group">
         <i class="fa-solid fa-lock"></i>
         <input type="password"
@@ -146,23 +138,17 @@ body{
                placeholder="Enter Password"
                required>
     </div>
-
     <div class="d-grid">
         <button type="submit" class="btn btn-login">
             <i class="fa-solid fa-right-to-bracket"></i>
             Login
         </button>
     </div>
-
 </form>
-
 <div class="register-link">
     Don't have an account?
-    <a href="UserLogin.jsp">Register Here</a>
+    <a href="index.jsp">Register Here</a>
 </div>
-
-
 </div>
-
 </body>
 </html>

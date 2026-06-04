@@ -5,7 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 import ModelDao.userDao;
 
@@ -28,13 +32,16 @@ public class loginServlet extends HttpServlet {
 		userDao dao=new userDao();
 	
 	String dbpass=dao.login(email);
-		if(password.equals(dbpass))
+		if(BCrypt.checkpw(password, dbpass))
 		{
-			response.sendRedirect("index.jsp");
+			HttpSession session  = request.getSession();
+			session.setAttribute("email", email);
+			request.setAttribute("email", email);
+			request.getRequestDispatcher("menu.jsp").forward(request, response);
 		}
 		
 		else {
-			response.sendRedirect("loginServlet");
+			response.sendRedirect("login.jsp");
 		}
 		
 		

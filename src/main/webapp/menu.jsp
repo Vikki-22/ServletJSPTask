@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -160,6 +160,17 @@ body {
 </style>
 </head>
 <body>
+
+	<%
+	HttpSession session = request.getSession(false);
+	String email = (String) session.getAttribute("email");
+	if (email == null) {
+		response.sendRedirect("loginServlet");
+		return;
+	}
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	%>
+
 
 <%@ include file="navbar.jsp"%>
 
